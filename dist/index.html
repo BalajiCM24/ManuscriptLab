@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f6f3">
+  <title>Manuscript Lab · XML to PDF</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon">M<span class="brand-dot">.</span></span><span>Manuscript Lab</span><span class="brand-sep"></span><span class="brand-sub">Publishing prototype</span></div>
+    <span class="privacy"><span class="privacy-dot"></span>Private workspace · runs in your browser</span>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy"><div class="eyebrow">XML → PDF WORKBENCH <span class="eyebrow-line"></span> PROTOTYPE 01</div><h1 id="page-title">From structured manuscript<br><em>to a finished proof.</em></h1><p>Run a compact publishing pipeline, inspect every stage, and take the resulting PDF and LaTeX with you.</p></div>
+      <div class="intro-aside"><span class="aside-num">06</span><span>visible stages<br>one traceable run</span></div>
+    </section>
+
+    <section class="workbench" aria-label="XML workbench">
+      <div class="section-heading"><div><span class="section-index">01 / INPUT</span><h2>Prepare the manuscript</h2></div><span class="section-hint">Start with the sample or paste your own XML</span></div>
+      <div class="editor-layout">
+        <div class="editor-card">
+          <div class="editor-toolbar"><div class="toolbar-title"><span class="file-symbol">⌁</span><strong>manuscript.xml</strong><span id="input-count" class="muted">0 characters</span></div><div class="toolbar-actions"><button type="button" id="sample-btn" class="text-button">Reset sample</button><button type="button" id="upload-btn" class="text-button">Upload XML</button><input type="file" id="file-input" accept=".xml,text/xml,application/xml" hidden></div></div>
+          <label class="sr-only" for="xml-input">Manuscript XML</label><textarea id="xml-input" spellcheck="false" aria-describedby="xml-hint"></textarea>
+          <div class="editor-footer" id="xml-hint"><span class="mini-dot"></span>JATS article subset and simple article XML supported</div>
+        </div>
+        <aside class="settings-card" aria-label="Run settings">
+          <div class="settings-title"><span class="section-index">RUN CONFIGURATION</span><span class="settings-glyph">⚙</span></div>
+          <label for="template-select">PDF template</label><select id="template-select"><option value="classic">Journal Classic</option><option value="modern">Research Modern</option></select><p class="field-note">Changes typography, accent, and the exported LaTeX preamble.</p>
+          <label for="validation-select">Validation</label><select id="validation-select"><option value="advisory">Advisory · report warnings</option><option value="strict">Strict · stop on missing content</option></select><p class="field-note">Checks a title, body text, and unsupported structures.</p>
+          <label for="scenario-select">TeX compilation</label><select id="scenario-select"><option value="proof">Simulate TeX · render PDF proof</option><option value="fail">Simulate compiler failure</option></select><p class="field-note">This hosted prototype exports .tex; its PDF proof is rendered in the browser.</p>
+          <button type="button" id="run-btn" class="run-button"><span>Run publishing pipeline</span><span aria-hidden="true">↗</span></button>
+          <p class="local-note">Your manuscript is processed locally in this tab. Nothing is uploaded.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="output" aria-label="Pipeline and output">
+      <div class="section-heading"><div><span class="section-index">02 / RUN</span><h2>Follow the work</h2></div><span id="run-summary" class="run-summary">Ready to run</span></div>
+      <div class="results-layout">
+        <div class="pipeline-card"><div class="card-label">PIPELINE <span id="pipeline-count">0 / 6 completed</span></div><div id="stages" class="stages" role="list"></div></div>
+        <div class="inspection-card"><div class="inspection-header"><div><span class="card-label">STAGE INSPECTOR</span><h3 id="detail-title">Select a stage</h3></div><span id="detail-status" class="status-pill">Pending</span></div><p id="detail-description" class="detail-description">Run the pipeline to see the operation, logs, and artifacts for each stage.</p><div class="log-heading">EVENT LOG <span id="log-count"></span></div><pre id="detail-log" class="log-box">No run yet.</pre><div class="artifact-heading">ARTIFACTS</div><div id="stage-artifacts" class="stage-artifacts"><span class="empty-artifacts">Generated files appear here.</span></div></div>
+      </div>
+      <div class="proof-card"><div class="proof-info"><span class="section-index">03 / DELIVERABLE</span><h2>Publication proof</h2><p id="proof-message">Your PDF preview will appear after a successful run.</p><div id="download-actions" class="download-actions" hidden><button type="button" id="pdf-download" class="download-primary">Download PDF <span>↗</span></button><button type="button" id="tex-download" class="download-secondary">Download .tex</button><button type="button" id="report-download" class="download-secondary">Download report</button></div></div><div id="preview-wrap" class="preview-wrap"><div class="blank-page"><span class="blank-mark">M.</span><span>Awaiting proof</span></div></div></div>
+      <p class="scope-note">Prototype scope: titles, authors, abstracts, sections, paragraphs, lists, and references. TeX compilation is simulated; the PDF proof is real and downloadable. Non-Latin text needs a Unicode font backend. Figures, tables, equations, citations, journal rules, and PDF/A checks need a production backend.</p>
+    </section>
+  </main>
+  <footer><span>Manuscript Lab / a working publishing pipeline sketch</span><span>Private by design · browser processing</span></footer>
+</body>
+</html>
