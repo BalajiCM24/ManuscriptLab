@@ -8,6 +8,12 @@ XML and generated artifacts stay in the active browser tab. No application endpo
 
 To serve locally: `python3 -m http.server 8765 -d dist`.
 
+## Live demo
+
+[Open the Manuscript Lab demo](https://manuscript-lab-balaji.balajicm.chatgpt.site)
+
+The demo is privately hosted and available to its authorized owner.
+
 ## Public repository note
 
 The public source uses the pinned `pdf-lib` CDN script in `dist/index.html` to avoid committing a vendored third-party bundle. The private hosted version bundles the same library locally. No manuscript data is sent to the CDN.
